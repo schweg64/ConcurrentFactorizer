@@ -1,0 +1,25 @@
+Factorizer Performance Write-up
+Ryan Schwegel
+
+Unthreaded method
+The unthreaded method is in general the fastest option for any small number of prime
+calcuations, in my case for any number n < 1,000,000 it was the fastest among all options.
+However past one million it quickly grinds to a halt and the bounded threadpool overtakes
+it in speed.
+
+Threaded, unbounded
+The unbounded approach is in general incredibly inefficient. The overhead of generating a thread for
+every integer between 2 and n is simply not worth it for small numbers, and astronomically large for
+higher numbers, to the point where an unthreaded approach is preferred in nearly every case.
+
+Bounded Thread Pool
+For any number n > 1,000,000, the bounded thread pool implementation proves to be the most efficient
+(using the default number of threads (number of system cores + 1)). The ideal number of cores for the
+thread pool was hard to determine on my dual core laptop due to variance from outside processes and
+such, but from what I could glean the ideal capcity was 6. I would be interested to see how this differs
+on my desktop.
+
+Streams
+Streams are by far the most performant solution for factorizing. Utilizing a parallel stream,
+performance is made better through the JVM's adaptive nature and understanding of system
+resources.
