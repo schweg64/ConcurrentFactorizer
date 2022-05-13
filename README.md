@@ -1,5 +1,6 @@
 # ConcurrentFactorizer
 Factorizing Java GUI, driver, and methods
+
 Developed over the course of Spring 2022 as part of Concurrent Programming taught by Patrick McKee
 
 The GUI is used to calculate the number of primes in a range between start and end integers selected by the user. Access it by running the main method inside FactorizerGUI.java
